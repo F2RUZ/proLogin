@@ -1,0 +1,123 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../assets/img/bgimages.jpg");
+}
+
+.signup-form {
+  width: 500px;
+  height: 480px;
+  border-top: 10px solid orange;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: "Exo";
+  color: #205283;
+}
+.form-title {
+  font-family: Exo, sans-serif;
+  font-weight: 400;
+  padding: 0;
+  color: inherit;
+  font-size: 1.7em;
+  margin: 5px 0;
+  color: #205283;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 130px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 100%;
+  font-family: Exo, sans-serif;
+
+}
+
+button.google-btn {
+  background-color: #e7e9ec;
+  height: 50px;
+  color: black;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-family: Exo, sans-serif;
+  
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  font-size: 15px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hr{
+    border: none;
+    border: 0.3px solid  #3297c9;
+    margin-bottom: 10px;
+}
+
+.logo{
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.github-btn{
+    background-color: #2d3436;
+}
