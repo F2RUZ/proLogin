@@ -1,0 +1,231 @@
+.info-component {
+  position: relative;
+  z-index: 9999;
+  border-radius: 15px; // Burchaklarni yumshatish
+  padding: 30px;
+  // box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); // So‘lakka ta'sir
+  text-align: center; // Matnni markazda joylashtirish
+  transition: transform 0.3s; // Animatsiya
+
+  &:hover {
+    transform: translateY(-5px); // Hoverda ko'tarilish effekt
+  }
+}
+
+.info-title {
+  font-size: 28px; // Sarlavha o'lchami
+  color: #00695c; // Matn rangi
+  margin-bottom: 10px; // Pastki bo'shliq
+  text-align: end;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+
+  font-family: "Exo";
+  font-style: normal;
+  font-weight: 800;
+}
+
+.info-description {
+  font-family: "Exo";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 25px; // Ta'rif o'lchami
+  color: #004d40; // Matn rangi
+  margin-bottom: 20px; // Pastki bo'shliq
+  text-align: end;
+}
+
+.info-list {
+  font-family: "Exo";
+  font-weight: 700;
+
+  list-style-type: none; // Ro'yxat belgilari yo'q
+  padding: 0; // Paddingni olib tashlash
+  margin: 20px 0; // Margin
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  li {
+    font-size: 22px; // Ro'yxat elementlari o'lchami
+    color: #004d40; // Matn rangi
+    margin-bottom: 15px; // Ro'yxat elementlari o'rtasidagi bo'shliq
+    display: flex; // Ikkita elementni yonma-yon joylashtirish
+    align-items: center; // Vertikal markazlash
+  }
+}
+
+.info-final {
+  font-size: 20px; // Yakuniy ta'rif o'lchami
+  color: #004d40; // Matn rangi
+  margin-top: 20px; // Yuqoridan bo'shliq
+  font-weight: bold; // Qalin matn
+  font-family: "Exo";
+}
+
+.register-button {
+  background-color: #00897b; // Tugma rangi
+  color: white; // Matn rangi
+  border: none; // Chegarasiz
+  border-radius: 5px; // Burchaklarni yumshatish
+  padding: 12px 25px; // Tugma ichidagi bo'shliq
+  cursor: pointer; // Ko'rsatgichni o'zgartirish
+  font-size: 18px; // Tugma matni o'lchami
+  transition: background-color 0.3s, transform 0.3s; // Tugma rangini o'zgartirish animatsiyasi
+
+  &:hover {
+    background-color: #00796b; // Hoverda tugma rangi o'zgarishi
+    transform: scale(1.05); // Hoverda ko'tarilish effekt
+  }
+}
+
+// Laptop (1024px)
+@media only screen and (max-width: 1024px) {
+  .info-component {
+    padding: 20px;
+  }
+
+  .info-title {
+    font-size: 24px;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .info-description {
+    font-size: 22px;
+    text-align: center;
+  }
+  .info-list {
+    align-items: center;
+  }
+
+  .info-list li {
+    font-size: 20px;
+  }
+
+  .info-final {
+    font-size: 18px;
+  }
+
+  .register-button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+
+// Tablet (768px)
+@media only screen and (max-width: 768px) {
+  .info-component {
+    padding: 15px;
+  }
+
+  .info-title {
+    font-size: 20px;
+  }
+
+  .info-description {
+    font-size: 20px;
+  }
+
+  .info-list li {
+    font-size: 18px;
+  }
+
+  .info-final {
+    font-size: 16px;
+  }
+
+  .register-button {
+    padding: 8px 18px;
+    font-size: 15px;
+  }
+}
+
+// Mobile (425px)
+@media only screen and (max-width: 425px) {
+  .info-component {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .info-title {
+    font-size: 18px;
+    flex-direction: column; // Sarlavha elementlari ustma-ust joylashtiriladi
+  }
+
+  .info-description {
+    font-size: 18px;
+  }
+
+  .info-list li {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .info-final {
+    font-size: 14px;
+  }
+
+  .register-button {
+    padding: 6px 15px;
+    font-size: 14px;
+  }
+}
+
+// Small mobile (375px)
+@media only screen and (max-width: 375px) {
+  .info-component {
+    padding: 8px;
+  }
+
+  .info-title {
+    font-size: 16px;
+  }
+
+  .info-description {
+    font-size: 16px;
+  }
+
+  .info-list li {
+    font-size: 14px;
+  }
+
+  .info-final {
+    font-size: 12px;
+  }
+
+  .register-button {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+}
+
+// Extra small mobile (320px)
+@media only screen and (max-width: 320px) {
+  .info-component {
+    padding: 5px;
+  }
+
+  .info-title {
+    font-size: 14px;
+  }
+
+  .info-description {
+    font-size: 14px;
+  }
+
+  .info-list li {
+    font-size: 12px;
+  }
+
+  .info-final {
+    font-size: 12px;
+  }
+
+  .register-button {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}

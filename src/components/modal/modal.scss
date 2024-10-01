@@ -1,0 +1,182 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); // Orqa fondagi rang
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease; // Animatsiya
+  z-index: 9999999999; // Modalni oldinga chiqarish
+}
+
+.modal-content {
+  background: #ffffff; // Modal fon rangi
+  padding: 30px;
+  border-radius: 10px; // Yuqori burchaklarni yumshatish
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); // So‘lakka ta'sir
+  animation: scaleUp 0.3s ease; // Modalni ochish paytida animatsiya
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+
+  button {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px; // Tugmalar uchun joy
+    border: none;
+    border-radius: 8px; // Yuqori burchaklarni yumshatish
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; // Qalin shrift
+    transition: background-color 0.3s, transform 0.3s; // Tugmalar animatsiyasi
+
+    &.yes-button {
+      background-color: #4caf50; // Yashil rang
+      color: white;
+
+      &:hover {
+        background-color: #45a049;
+        transform: translateY(-2px); // Tugma yuqoriga ko‘tariladi
+      }
+    }
+
+    &.no-button {
+      background-color: #f44336; // Qizil rang
+      color: white;
+
+      &:hover {
+        background-color: #e53935;
+        transform: translateY(-2px); // Tugma yuqoriga ko‘tariladi
+      }
+    }
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #888; // Yengil rang
+  cursor: pointer;
+
+  &:hover {
+    color: #555; // Hover holatidagi rang
+  }
+}
+
+h2 {
+  font-family: "Exo";
+  font-style: normal;
+  font-weight: 800;
+}
+
+// Modalni ochish paytidagi animatsiya
+@keyframes scaleUp {
+  from {
+    transform: scale(0.7); // Boshlang‘ich o‘lcham
+    opacity: 0; // Boshlang‘ich shaffoflik
+  }
+  to {
+    transform: scale(1); // Yakuniy o‘lcham
+    opacity: 1; // Yakuniy shaffoflik
+  }
+}
+
+// Laptop (1024px)
+@media only screen and (max-width: 1024px) {
+  .modal-content {
+    width: 80%;
+    padding: 25px;
+  }
+
+  .modal-buttons button {
+    padding: 10px 18px;
+    font-size: 15px;
+  }
+}
+
+// Tablet (768px)
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .modal-buttons {
+    flex-direction: column; // Tugmalar ustma-ust bo'ladi
+    margin: 10px 0;
+  }
+
+  .modal-buttons button {
+    margin: 10px 0;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+// Mobile (425px)
+@media only screen and (max-width: 425px) {
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+    border-radius: 5px; // Kichik ekran uchun radius kichraytiriladi
+  }
+
+  .modal-buttons button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .close-button {
+    font-size: 16px;
+  }
+}
+
+// Small mobile (375px)
+@media only screen and (max-width: 375px) {
+  .modal-content {
+    padding: 10px;
+  }
+
+  .modal-buttons button {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
+// Extra small mobile (320px)
+@media only screen and (max-width: 320px) {
+  .modal-content {
+    padding: 8px;
+  }
+
+  .modal-buttons button {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+}

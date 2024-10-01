@@ -1,20 +1,9 @@
 // src/App.js
 import React from "react";
 import Login from "./components/login/Login";
-
+import "./App.scss";
 function App() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Login />
-    </div>
-  );
+  return <Login />;
 }
 
 export default App;

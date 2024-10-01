@@ -1,19 +1,49 @@
+.app-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.information-wrapper {
+  flex: 0.5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100vh;
+  // background-color: #cd84f1;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: whitesmoke;
+  box-shadow: 10px 10px 5px grey;
+}
+
+.main-page-images {
+  position: absolute;
+  width: 800px;
+  left: -200px;
+  // right: 500px;
+}
+
 .form-wrapper {
+  flex: 0.5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 50%;
   height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("../../assets/img/bgimages.jpg");
+  background: linear-gradient(228deg, #0279a4 -22.97%, #473198 120.53%);
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  box-shadow: 10px -5px 10px #bdc3c7;
 }
 
 .signup-form {
   width: 500px;
-  height: 480px;
+  // height: 480px;
   border-top: 10px solid orange;
   border-radius: 10px;
   padding: 20px;
@@ -43,7 +73,7 @@ h2 {
 label {
   margin-bottom: 10px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
   font-family: "Exo";
   color: #205283;
 }
@@ -79,45 +109,148 @@ button {
   margin-bottom: 10px;
   width: 100%;
   font-family: Exo, sans-serif;
-
-}
-
-button.google-btn {
-  background-color: #e7e9ec;
-  height: 50px;
-  color: black;
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-  font-family: Exo, sans-serif;
-  
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: top;
-  font-size: 15px;
 }
 
 button:hover {
   opacity: 0.9;
 }
 
-.submit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hr{
-    border: none;
-    border: 0.3px solid  #3297c9;
-    margin-bottom: 10px;
+.hr {
+  border: none;
+  border: 0.3px solid #3297c9;
+  margin-bottom: 10px;
 }
 
-.logo{
-    width: 300px;
-    margin-bottom: 20px;
+.logo {
+  width: 300px;
+  margin-bottom: 20px;
 }
 
-.github-btn{
-    background-color: #2d3436;
+.form-time {
+  font-size: 18px;
+  font-family: Exo, sans-serif;
+  color: #0279a4;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+// Laptop (1024px)
+@media only screen and (max-width: 1024px) {
+  .app-wrapper {
+    flex-direction: column;
+    border: 1px solid;
+  }
+  .main-page-images {
+    width: 800px;
+    right: 10%;
+  left: 0;
+
+  }
+
+  .form-wrapper {
+    width: 100%;
+    padding: 50px;
+  }
+
+  .signup-form {
+    width: 500px;
+  }
+}
+
+// Tablet (768px)
+@media only screen and (max-width: 768px) {
+  .main-page-images {
+    width: 400px;
+    right: 200px;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    border-radius: 30px;
+  }
+
+  .signup-form {
+    width: 400px;
+  }
+
+  button {
+    gap: 50px;
+  }
+}
+
+// Mobile (425px)
+@media only screen and (max-width: 425px) {
+  .main-page-images {
+    width: 250px;
+    right: 100px;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    border-radius: 0;
+    height: auto;
+    padding: 20px;
+  }
+
+  .signup-form {
+    width: 100%;
+  }
+
+  button {
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  .logo {
+    width: 200px;
+  }
+}
+
+// Small mobile (375px)
+@media only screen and (max-width: 375px) {
+  .main-page-images {
+    width: 200px;
+    right: 50px;
+  }
+
+  .signup-form {
+    width: 90%;
+  }
+
+  button {
+    gap: 10px;
+  }
+}
+
+// Extra small mobile (320px)
+@media only screen and (max-width: 320px) {
+  .main-page-images {
+    width: 150px;
+    right: 20px;
+  }
+
+  .signup-form {
+    width: 100%;
+    padding: 10px;
+  }
+
+  button {
+    gap: 5px;
+    font-size: 12px;
+  }
+
+  .form-time {
+    font-size: 16px;
+  }
 }

@@ -1,132 +1,173 @@
-import React from "react";
-import "./login.scss"; // SCSS faylni alohida yozib olinadi
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub, FaYandex } from "react-icons/fa"; // Yandex ikonkasi
-import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify"; // Toastify kutubxonasi
+import "react-toastify/dist/ReactToastify.css"; // Toastify styling
+import "./login.scss";
 import logo from "../../assets/img/DA-logo-White.png";
+import Modal from "../modal/Modal";
+import Information from "../information/Information";
+import img from "../../assets/img/information.png";
 
-const SignupForm = () => {
-  const handleSubmit = (e) => {
+const Login = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(true);
+  const [selectedTimes, setSelectedTimes] = useState([]);
+  const [username, setUsername] = useState("");
+  const [telegramUsername, setTelegramUsername] = useState("");
+  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false); // Jo'natish jarayoni uchun holat
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit logikasi bu yerda bo'ladi
-    console.log("Form Submitted");
-  };
+    setLoading(true); // Jo'natilayotganini bildirish
+    const message = `
+      Ism: ${username}\n
+      Telegram Username: ${telegramUsername}\n
+      Telefon Raqam: ${phone}\n
+      Qatnashish Vaqti: ${selectedTimes.join(", ")}
+    `;
 
-  // Google Login
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => handleGoogleLoginSuccess(tokenResponse),
-    onError: () => handleGoogleLoginError(),
-  });
-
-  const handleGoogleLoginSuccess = (tokenResponse) => {
-    console.log("Google Login Success:", tokenResponse);
-    // Tokenni backend-ga yuborish yoki foydalanuvchini autentifikatsiya qilish logikasi
-  };
-
-  const handleGoogleLoginError = () => {
-    console.error("Google Login Failed");
-  };
-
-  // GitHub Login
-  const handleGithubLogin = () => {
-    // GitHub OAuth URL ga yo'naltirish
-    const clientId = "YOUR_GITHUB_CLIENT_ID";
-    const redirectUri = "http://localhost:3000";
-    const scope = "read:user user:email";
-    window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
-  };
-
-  // Yandex Login
-  const handleYandexLogin = () => {
-    const clientId = "YOUR_YANDEX_CLIENT_ID";
-    const redirectUri = "http://localhost:3000"; // Redirect URL
-    const scope = "login:info login:email";
-    window.location.href = `https://oauth.yandex.com/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
-  };
-
-  // OAuth callbackni boshqarish
-  React.useEffect(() => {
-    const url = window.location.href;
-    const hasCode = url.includes("?code=");
-
-    if (hasCode) {
-      const newUrl = url.split("?code=");
-      window.history.pushState({}, null, newUrl[0]);
-      const code = newUrl[1];
-
-      // Backend-ga kodni yuborish va access token olish (GitHub)
-      axios
-        .post("http://localhost:4000/auth/github", { code })
-        .then((response) => {
-          console.log("GitHub Access Token:", response.data.access_token);
-          // Access token bilan foydalanuvchini autentifikatsiya qilish logikasi
-        })
-        .catch((error) => {
-          console.error("GitHub OAuth Error:", error);
-        });
-
-      // Backend-ga kodni yuborish va access token olish (Yandex)
-      axios
-        .post("http://localhost:4000/auth/yandex", { code })
-        .then((response) => {
-          console.log("Yandex Access Token:", response.data.access_token);
-          // Access token bilan foydalanuvchini autentifikatsiya qilish logikasi
-        })
-        .catch((error) => {
-          console.error("Yandex OAuth Error:", error);
-        });
+    try {
+      // Axios orqali Telegram botga yuborish
+      await axios.post(
+        `https://api.telegram.org/bot7276780290:AAFZ5uwwEw3HwQn86eHxCV126WTpGdZ5pvo/sendMessage`,
+        {
+          chat_id: "5176693678",
+          text: message,
+        }
+      );
+      toast.success("Successfull", {
+        position: "top-center",
+      });
+    } catch (error) {
+      toast.error("Xatolik yuz berdi, qayta urinib ko'ring!");
+    } finally {
+      setLoading(false); // Yuborish jarayoni tugagach tugmani qayta tiklash
     }
+  };
+
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedTimes([...selectedTimes, value]);
+    } else {
+      setSelectedTimes(selectedTimes.filter((time) => time !== value));
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleYes = () => {
+    closeModal();
+  };
+
+  const handleNo = () => {
+    window.location.href = "https://t.me/your_channel_link";
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setModalOpen(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+    <div className="app-wrapper">
       <div className="form-wrapper">
         <img className="logo" src={logo} alt="" />
-        <div className="signup-form">
-          <form onSubmit={handleSubmit}>
-            <h2 className="form-title">Login</h2>
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" id="username" name="username" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" name="password" required />
-            </div>
-            <button className="submit" type="submit">
-              Login
-            </button>
-            <hr className="hr" />
-            <button
-              type="button"
-              className="google-btn"
-              onClick={() => googleLogin()}
-            >
-              <FcGoogle size={"20px"} />
-              Login with Google
-            </button>
-            <button
-              type="button"
-              className="github-btn"
-              onClick={handleGithubLogin}
-            >
-              <FaGithub size={"20px"} />
-              Login with GitHub
-            </button>
-            <button
-              type="button"
-              className="yandex-btn" // Yandex uchun button
-              onClick={handleYandexLogin}
-            >
-              <FaYandex size={"20px"} />
-              Login with Yandex
-            </button>
-          </form>
-        </div>
+        {showLoginForm && (
+          <div className="signup-form">
+            <form onSubmit={handleSubmit}>
+              <h2 className="form-title">
+                Dasturlashga ilk qadam IT Time Academydan boshlanadi bepul
+                maslahatga yoziling !!!
+              </h2>
+              <div className="form-group">
+                <label htmlFor="username">Ismingiz :</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  placeholder="ex: Feruz"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="telegramUsername">Telegram username :</label>
+                <input
+                  type="text"
+                  id="telegramUsername"
+                  name="telegramUsername"
+                  value={telegramUsername}
+                  onChange={(e) => setTelegramUsername(e.target.value)}
+                  required
+                  placeholder=" ex: @F2RUZ"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="phone">Telefon raqam :</label>
+                <input
+                  type="number"
+                  placeholder="ex: +998912345678"
+                  id="phone"
+                  name="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+              </div>
+
+              <h4 className="form-time">Qaysi vaqtda qatnasha olasiz?</h4>
+              <div className="checkbox-group">
+                {[
+                  "10:00 - 12:00",
+                  "15:00 - 17:00",
+                  "17:00 - 19:00",
+                  "19:00 - 21:00",
+                ].map((time) => (
+                  <div className="form-group" key={time}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        value={time}
+                        onChange={handleCheckboxChange}
+                      />
+                      {time}
+                    </label>
+                  </div>
+                ))}
+              </div>
+
+              <button className="submit" type="submit" disabled={loading}>
+                {loading ? "Yuborilmoqda..." : "Yuborish"}
+              </button>
+            </form>
+          </div>
+        )}
+        {modalOpen && (
+          <Modal
+            isOpen={modalOpen}
+            onClose={closeModal}
+            onYes={handleYes}
+            onNo={handleNo}
+          />
+        )}
       </div>
-    </GoogleOAuthProvider>
+
+      <div className="information-wrapper">
+        <img className="main-page-images" src={img} alt="" />
+        <Information />
+      </div>
+
+      <ToastContainer />
+    </div>
   );
 };
 
-export default SignupForm;
+export default Login;
