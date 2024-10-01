@@ -18,10 +18,8 @@ const Information = () => {
         <li>📚 Muntazam treninglar va seminarlar</li>
         <li>🤝 Mentorlar bilan individual qo'llab-quvvatlash</li>
         <li>🎓 Sertifikatlar bilan taqdirlash</li>
-        <li>
-          ☕ Bepul coworking zona 24/7 markaz hududida bo'lish imkoniyati
-        </li>{" "}
-        {/* Qo'shilgan joy */}
+        <li>☕ Bepul coworking zona 24/7 markaz hududida bo'lish imkoniyati</li>
+        <li>💻 Onlayn o'qish imkoniyati</li> {/* Qo'shilgan joy */}
       </ul>
       <p className="info-final">
         Professional dasturchi bo'lmoqchi bo'lsangiz hoziroq ro‘yxatdan o‘ting!
