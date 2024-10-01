@@ -104,7 +104,7 @@ const SignupForm = () => {
               onClick={() => googleLogin()}
             >
               <FcGoogle size={"20px"} />
-              Sign Up with Google
+              Login with Google
             </button>
             <button
               type="button"
@@ -112,7 +112,7 @@ const SignupForm = () => {
               onClick={handleGithubLogin}
             >
               <FaGithub size={"20px"} />
-              Sign Up with GitHub
+              Login with GitHub
             </button>
             <button
               type="button"
@@ -120,7 +120,7 @@ const SignupForm = () => {
               onClick={handleYandexLogin}
             >
               <FaYandex size={"20px"} />
-              Sign Up with Yandex
+              Login with Yandex
             </button>
           </form>
         </div>
